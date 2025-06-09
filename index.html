@@ -21,78 +21,69 @@
     font-style: normal;
   }
 
-  
-  .nameError,.lastnameError,.emailError,.passwordError {
+
+  .nameError,
+  .emailError,
+  .messageError {
     display: none;
   }
-
 </style>
 
-<body class="poppins-regular bg-green-100">
-  <form action="" class="myform">
-    <div class="container  flex flex-col items-center justify center mt-10">
-      <h1 style="font-size: 2.5vw; font-weight: bold; margin-bottom: 1.5vw; color: green;">Signup Form</h1>
-      <input class="name rounded" type="text" placeholder="First Name"
-        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw;">
+<body class="poppins-regular bg-white ">
 
-      <p class="nameError"
-        style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 22%;">
-        Firstname should contain only alphabets</p>
+  <section class="relative flex justify-center items-center">
+
+    <div class="bg-green-100 rounded flex flex-col justify-center shadow-xl  gap-7 p-10" style=" margin-top: 8%;">
 
 
+      <div>
+        <h1 class="text-2xl font-bold w-80 text-center">Contact Form</h1>
+      </div>
+      <div class=" relative">
+        <input type="text" class="name w-80 rounded" placeholder="Name" style="padding: 1%; border: solid black 1px;">
+        <p class="nameError absolute text-sm text-red-500" style="padding-left: 1%;">Name error</p>
+      </div>
 
-      <input class="lastname rounded" type="text" placeholder="Last Name"
-        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw;">
+      <div class="relative">
+        <input type="text" class="email w-80 rounded " placeholder="Email address"
+          style="padding: 1%; border: solid black 1px;">
+        <p class="emailError absolute text-sm text-red-500" style=" padding-left: 1%;">Email error</p>
+      </div>
 
-      <p class="lastnameError"
-      style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 30.7%;">
-      Lastname should contain only alphabets</p>
-
-
-      <input class="email rounded" type="text" placeholder="Email address"
-        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw; position: relative;">
-
-      <p class="emailError"
-        style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 39.7%;">
-        Enter valid email</p>
-
-      <input class="password rounded" type="text" placeholder="password"
-        style=" width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 2vw; margin-top: -0.1vw; position: relative;">
-
-      <p class="passwordError"
-        style=" color: red; width: 25%;  text-align: left; font-size: 0.7vw; position: absolute; top: 48.6%;">
-        min 8+ least one uppercase, lowercase, number, special char.</p>
-
-      <input class="signup rounded text-white font-bold"
-      style=" margin-left: 17%; width: 8%; align-items: start; padding: 0.5vw; color: white; background-color: green;" type="submit"
-      value="Signup">
-
-      <!-- <div class="overlay" style="border: solid black 1px; height: 70%; width: 35%; background-color: transparent; position: absolute; "></div> -->
-      <!-- <input type="submit" class="submit"> -->
-
+      <div class="relative">
+        <textarea type="text" class="message w-80 rounded" placeholder="Write message here..."
+          style="padding: 1%; border: solid black 1px;"></textarea>
+        <p class="messageError absolute text-sm  text-red-500" style="padding-left: 1%; margin-top: -0.5vw;">Enter a message between 1-200 words</p>
+      </div>
+      <div>
+        <input class="submit rounded" type="submit" value="Send message"
+          style="background-color: black; color: white;  padding: 2%;">
+      </div>
     </div>
-  </form>
+
+  </section>
+
+
 
   <script>
-    var signup = document.querySelector(".signup")
-    signup.addEventListener("click", function () {
+    var submit = document.querySelector(".submit")
+    submit.addEventListener("click", function () {
       event.preventDefault()
-      
-
 
       var nameRegex = /^[a-zA-Z]+$/
       var emailRegex = /^[a-zA-Z0-9]+@gmail.com/
-      var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\w).{8,}$/
+      var messageRegex = /^(?:\b\w+\b[\s\r\n]*){1,200}$/
+
+
+      // var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\w).{8,}$/
 
       // 
       var name = document.querySelector(".name")
-      var lastname = document.querySelector(".lastname")
       var email = document.querySelector(".email")
-      var password = document.querySelector(".password")
-      var passwordError = document.querySelector(".passwordError")
       var emailError = document.querySelector(".emailError")
-      var nameError=document.querySelector(".nameError")
-      var lastnameError=document.querySelector(".lastnameError")
+      var nameError = document.querySelector(".nameError")
+      var message=document.querySelector(".message")
+      var messageError=document.querySelector(".messageError")
 
 
       var valid = true //check it all condition true or false
@@ -100,44 +91,45 @@
       if (nameRegex.test(name.value) == false) { //use test to compare values
         var valid = false
 
-        nameError.style.display = "inline"
+        nameError.style.display = "block"
       } else {
         nameError.style.display = "none"
       }
 
-       if (nameRegex.test(lastname.value) == false) { //use test to compare values
+
+      if (emailRegex.test(email.value) == false) { //use test to compare values
         var valid = false
 
-        lastnameError.style.display = "inline"
-      } else {
-        lastnameError.style.display = "none"
-      }
-
-       if (emailRegex.test(email.value) == false) { //use test to compare values
-        var valid = false
-
-        emailError.style.display = "inline"
+        emailError.style.display = "block"
       } else {
         emailError.style.display = "none"
       }
 
-       if (passwordRegex.test(password.value) == false) { //use test to compare values
+      if (messageRegex.test(message.value) == false) { //use test to compare values
         var valid = false
 
-        passwordError.style.display = "inline"
+        messageError.style.display = "block"
       } else {
-        passwordError.style.display = "none"
+        messageError.style.display = "none"
       }
 
-     
+      // if (passwordRegex.test(password.value) == false) { //use test to compare values
+      //   var valid = false
+
+      //   passwordError.style.display = "inline"
+      // } else {
+      //   passwordError.style.display = "none"
+      // }
+
+
       if (valid == true) {
-        alert("signup successfully")
-         
+        alert("Message send successfully")
+
 
       }
 
     })
-    
+
 
   </script>
 </body>
