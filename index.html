@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>validation</title>
+</head>
+<!-- Tailwind css cdn link -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<!-- Google Fonts link for Poppins -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+<!--  -->
+<style>
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  
+  .nameError,.lastnameError,.emailError,.passwordError {
+    display: none;
+  }
+
+</style>
+
+<body class="poppins-regular bg-green-100">
+  <form action="" class="myform">
+    <div class="container  flex flex-col items-center justify center mt-10">
+      <h1 style="font-size: 2.5vw; font-weight: bold; margin-bottom: 1.5vw; color: green;">Signup Form</h1>
+      <input class="name rounded" type="text" placeholder="First Name"
+        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw;">
+
+      <p class="nameError"
+        style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 22%;">
+        Firstname should contain only alphabets</p>
+
+
+
+      <input class="lastname rounded" type="text" placeholder="Last Name"
+        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw;">
+
+      <p class="lastnameError"
+      style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 30.7%;">
+      Lastname should contain only alphabets</p>
+
+
+      <input class="email rounded" type="text" placeholder="Email address"
+        style="width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 1.5vw; position: relative;">
+
+      <p class="emailError"
+        style="color: red; width: 25%; text-align: left; font-size: 0.7vw; position: absolute; top: 39.7%;">
+        Enter valid email</p>
+
+      <input class="password rounded" type="text" placeholder="password"
+        style=" width: 25%; outline: none; border: solid black 1px; padding: 0.5vw; margin-bottom: 2vw; margin-top: -0.1vw; position: relative;">
+
+      <p class="passwordError"
+        style=" color: red; width: 25%;  text-align: left; font-size: 0.7vw; position: absolute; top: 48.6%;">
+        min 8+ least one uppercase, lowercase, number, special char.</p>
+
+      <input class="signup rounded text-white font-bold"
+      style=" margin-left: 17%; width: 8%; align-items: start; padding: 0.5vw; color: white; background-color: green;" type="submit"
+      value="Signup">
+
+      <!-- <div class="overlay" style="border: solid black 1px; height: 70%; width: 35%; background-color: transparent; position: absolute; "></div> -->
+      <!-- <input type="submit" class="submit"> -->
+
+    </div>
+  </form>
+
+  <script>
+    var signup = document.querySelector(".signup")
+    signup.addEventListener("click", function () {
+      event.preventDefault()
+      
+
+
+      var nameRegex = /^[a-zA-Z]+$/
+      var emailRegex = /^[a-zA-Z0-9]+@gmail.com/
+      var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\w).{8,}$/
+
+      // 
+      var name = document.querySelector(".name")
+      var lastname = document.querySelector(".lastname")
+      var email = document.querySelector(".email")
+      var password = document.querySelector(".password")
+      var passwordError = document.querySelector(".passwordError")
+      var emailError = document.querySelector(".emailError")
+      var nameError=document.querySelector(".nameError")
+      var lastnameError=document.querySelector(".lastnameError")
+
+
+      var valid = true //check it all condition true or false
+
+      if (nameRegex.test(name.value) == false) { //use test to compare values
+        var valid = false
+
+        nameError.style.display = "inline"
+      } else {
+        nameError.style.display = "none"
+      }
+
+       if (nameRegex.test(lastname.value) == false) { //use test to compare values
+        var valid = false
+
+        lastnameError.style.display = "inline"
+      } else {
+        lastnameError.style.display = "none"
+      }
+
+       if (emailRegex.test(email.value) == false) { //use test to compare values
+        var valid = false
+
+        emailError.style.display = "inline"
+      } else {
+        emailError.style.display = "none"
+      }
+
+       if (passwordRegex.test(password.value) == false) { //use test to compare values
+        var valid = false
+
+        passwordError.style.display = "inline"
+      } else {
+        passwordError.style.display = "none"
+      }
+
+     
+      if (valid == true) {
+        alert("signup successfully")
+         
+
+      }
+
+    })
+    
+
+  </script>
+</body>
+
+</html>
